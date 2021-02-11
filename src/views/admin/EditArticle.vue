@@ -1,78 +1,82 @@
 <template>
-    <form novalidate class="md-layout" @submit.prevent="validateArticle">
-        <md-card class="md-layout-item md-size-50 md-small-size-100">
-            <md-card-header>
-                <div class="md-title">Article</div>
-            </md-card-header>
+    <div>
+        <md-button @click="goAdmin" class="md-raised md-accent">Admin</md-button>
+        <form novalidate class="md-layout" @submit.prevent="validateArticle">
+            <md-card class="md-layout-item md-size-50 md-small-size-100">
+                <md-card-header>
+                    <div class="md-title">Article</div>
+                </md-card-header>
 
-            <md-card-content>
-                <div class="md-layout md-gutter">
-                    <div class="md-layout-item md-small-size-100">
-                        <md-field :class="getValidationClass('title')">
-                            <label for="title">Title</label>
-                            <md-input name="title" id="title" v-model="form.title" :disabled="sending" />
-                            <span class="md-error" v-if="!$v.form.title.required">The title is required</span>
-                            <span class="md-error" v-else-if="!$v.form.title.minlength">Invalid title</span>
-                        </md-field>
+                <md-card-content>
+                    <div class="md-layout md-gutter">
+                        <div class="md-layout-item md-small-size-100">
+                            <md-field :class="getValidationClass('title')">
+                                <label for="title">Title</label>
+                                <md-input name="title" id="title" v-model="form.title" :disabled="sending" />
+                                <span class="md-error" v-if="!$v.form.title.required">The title is required</span>
+                                <span class="md-error" v-else-if="!$v.form.title.minlength">Invalid title</span>
+                            </md-field>
+                        </div>
+
+                        <div class="md-layout-item md-small-size-100">
+                            <md-field :class="getValidationClass('subtitle')">
+                                <label for="last-name">Subtitle</label>
+                                <md-input name="last-name" id="last-name" v-model="form.subtitle" :disabled="sending" />
+                                <span class="md-error" v-if="!$v.form.subtitle.required">The subtitle is required</span>
+                                <span class="md-error" v-else-if="!$v.form.subtitle.minlength">Invalid last name</span>
+                            </md-field>
+                        </div>
                     </div>
 
-                    <div class="md-layout-item md-small-size-100">
-                        <md-field :class="getValidationClass('subtitle')">
-                            <label for="last-name">Subtitle</label>
-                            <md-input name="last-name" id="last-name" v-model="form.subtitle" :disabled="sending" />
-                            <span class="md-error" v-if="!$v.form.subtitle.required">The subtitle is required</span>
-                            <span class="md-error" v-else-if="!$v.form.subtitle.minlength">Invalid last name</span>
-                        </md-field>
+                    <div class="md-layout md-gutter">
+                        <div class="md-layout-item md-small-size-100">
+                            <md-field :class="getValidationClass('image')">
+                                <md-file placeholder="Image" name="image" v-on:change="onFileChange" accept="image/*" />
+                            </md-field>
+                            <img class="visualImg" v-if="this.form.data" :src="this.form.data" alt="Visuel" />
+                        </div>
                     </div>
-                </div>
-
-                <div class="md-layout md-gutter">
-                    <div class="md-layout-item md-small-size-100">
-                        <md-field :class="getValidationClass('image')">
-                            <md-file placeholder="Image" name="image" :md-change="onFileChange" accept="image/*" />
-                        </md-field>
+                    <div class="md-layout md-gutter">
+                        <div class="md-layout-item md-small-size-100">
+                            <md-field :class="getValidationClass('content')">
+                                <label for="content">Content</label>
+                                <md-textarea md-autogrow id="content" name="content" v-model="form.content" :disabled="sending" />
+                                <span class="md-error" v-if="!$v.form.content.required">The content is required</span>
+                            </md-field>
+                        </div>
                     </div>
-                </div>
-                <div class="md-layout md-gutter">
-                    <div class="md-layout-item md-small-size-100">
-                        <md-field :class="getValidationClass('content')">
-                            <label for="content">Content</label>
-                            <md-textarea md-autogrow id="content" name="content" v-model="form.content" :disabled="sending" />
-                            <span class="md-error" v-if="!$v.form.content.required">The content is required</span>
-                        </md-field>
+
+                    <div class="md-layout md-gutter">
+                        <div class="md-layout-item">
+                            <md-field>
+                                <label for="category">Category</label>
+                                <md-select v-model="form.category_id" name="category" id="category">
+                                    <md-option v-bind:key="category.id" v-for="category in category.categories" :value="category.id">{{category.name}}</md-option>
+                                </md-select>
+                                <span class="md-error" v-if="!$v.form.category_id.required">The content is required</span>
+                            </md-field>
+                        </div>
                     </div>
-                </div>
-
-                <div class="md-layout md-gutter">
-                    <div class="md-layout-item">
-                        <md-field>
-                            <label for="category">Category</label>
-                            <md-select v-model="form.category_id" name="category" id="category">
-                                <md-option v-bind:key="category.id" v-for="category in category.categories" :value="category.id">{{category.name}}</md-option>
-                            </md-select>
-                            <span class="md-error" v-if="!$v.form.category_id.required">The content is required</span>
-                        </md-field>
-                    </div>
-                </div>
 
 
-                <md-field :class="getValidationClass('publicationDate')">
-                    <md-datepicker v-model="form.publicationDate">
-                        <label>Select date</label>
-                    </md-datepicker>
-                    <span class="md-error" v-if="!$v.form.publicationDate.required">The publicationDate is required</span>
-                </md-field>
-            </md-card-content>
+                    <md-field :class="getValidationClass('publicationDate')">
+                        <md-datepicker v-model="form.publicationDate">
+                            <label>Select date</label>
+                        </md-datepicker>
+                        <span class="md-error" v-if="!$v.form.publicationDate.required">The publicationDate is required</span>
+                    </md-field>
+                </md-card-content>
 
-            <md-progress-bar md-mode="indeterminate" v-if="sending" />
+                <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
-            <md-card-actions>
-                <md-button type="submit" class="md-primary" :disabled="sending">Save article</md-button>
-            </md-card-actions>
-        </md-card>
+                <md-card-actions>
+                    <md-button type="submit" class="md-primary" :disabled="sending">Save article</md-button>
+                </md-card-actions>
+            </md-card>
 
-        <md-snackbar :md-active.sync="articleSaved">The article was saved with success!</md-snackbar>
-    </form>
+            <md-snackbar :md-active.sync="articleSaved">The article was saved with success!</md-snackbar>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -92,7 +96,9 @@ export default {
             image: null,
             content: null,
             publicationDate: null,
-            category_id: null
+            category_id: null,
+            filename: null,
+            data: null
         },
         articleSaved: false,
         sending: false,
@@ -120,7 +126,9 @@ export default {
         }
     },
     created() {
-        this.list()
+        this.list().then(() => {
+
+        })
         this.get(this.$route.params.id).then(response => {
             this.form.id = response.data.id
             this.form.title = response.data.title
@@ -129,6 +137,7 @@ export default {
             let date = response.data.publicationDate.split("T");
             this.form.publicationDate = date[0]
             this.form.category_id = response.data.category.id
+            this.form.data = response.data.image
         })
     },
     computed: {
@@ -140,11 +149,21 @@ export default {
         ...mapActions('article', ['update', 'get']),
         ...mapActions('category', ['list']),
         onFileChange (e) {
+            let form = this.form;
             let files = e.target.files || e.dataTransfer.files;
             if (!files.length) {
                 return;
             }
-            this.form.image = files[0].name
+            let reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = function () {
+                form.filename = files[0].name
+                form.data = reader.result
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            };
+            this.form = form
         },
         getValidationClass (fieldName) {
             const field = this.$v.form[fieldName]
@@ -178,11 +197,17 @@ export default {
             if (!this.$v.$invalid) {
                 this.saveArticle()
             }
+        },
+        goAdmin() {
+            router.push({name: 'listArticle'})
         }
     },
 }
 </script>
 
 <style scoped>
-
+.visualImg{
+    max-width: 150px;
+    max-height: 150px;
+}
 </style>

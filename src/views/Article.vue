@@ -1,5 +1,15 @@
 <template>
-    <div>
+    <div class="loader" v-if="loading">
+
+        <span>↓</span>
+        <span style="--delay: 0.1s">↓</span>
+        <span style="--delay: 0.3s">↓</span>
+        <span style="--delay: 0.4s">↓</span>
+        <span style="--delay: 0.5s">↓</span>
+
+    </div>
+    <div v-else>
+        <md-button @click="goHome">Home</md-button>
         <md-card>
             <md-card-header>
                 <div class="md-layout md-gutter md-alignment-center">
@@ -26,6 +36,11 @@
             <md-card-content>
                 <div class="md-layout md-gutter md-alignment-center">
                     <div class="md-layout-item">
+                        <img class="imgArticle" v-if="article.image && article.image.startsWith('data:')" :src="article.image" alt="People">
+                    </div>
+                </div>
+                <div class="md-layout md-gutter md-alignment-center">
+                    <div class="md-layout-item">
                         <p>{{article.content}}</p>
                     </div>
                 </div>
@@ -36,11 +51,16 @@
 
 <script>
 import {mapActions, mapState} from "vuex";
+import { router } from "../router";
 
 export default {
     name: "Article",
+    data: () => ({
+        loading: true
+    }),
     created() {
         this.get(this.$route.params.id).then(() => {
+            this.loading = false
         })
     },
     computed: {
@@ -54,10 +74,16 @@ export default {
     },
     methods: {
         ...mapActions('article', ['get']),
+        goHome(){
+            router.push({name: 'home'})
+        }
     }
 }
 </script>
 
 <style scoped>
-
+.imgArticle{
+    max-width: 500px;
+    max-height: 500px;
+}
 </style>

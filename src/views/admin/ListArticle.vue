@@ -1,12 +1,14 @@
 
 <template>
     <div>
+        <md-button  class="md-raised md-primary" @click="goHome">Home</md-button>
         <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
             <md-table-toolbar>
                 <div class="md-toolbar-section-start">
                     <h1 class="md-title">Articles</h1>
                 </div>
 
+                <md-button class="md-primary md-raised" @click="newCategory">Create New Category</md-button>
                 <md-button class="md-primary md-raised" @click="newArticle">Create New Article</md-button>
 
                 <md-field md-clearable class="md-toolbar-section-end">
@@ -14,24 +16,32 @@
                 </md-field>
             </md-table-toolbar>
 
-            <md-table-empty-state
+            <md-table-empty-state v-if="this.loading"
+                md-label="Loading..">
+                <md-button class="md-primary md-raised" @click="newArticle">Create New Article</md-button>
+            </md-table-empty-state>
+
+            <md-table-empty-state v-else
                 md-label="No article found"
                 :md-description="`No article found for this '${search}' query. Try a different search term or create a new article.`">
                 <md-button class="md-primary md-raised" @click="newArticle">Create New Article</md-button>
             </md-table-empty-state>
 
-            <md-table-row @click="displayArticle(item)" slot="md-table-row" slot-scope="{ item }">
+            <md-table-row slot="md-table-row" slot-scope="{ item }">
                 <md-table-cell md-label="ID" md-sort-by="id" md-numeric>{{ item.id }}</md-table-cell>
                 <md-table-cell md-label="Title" md-sort-by="title">{{ item.title }}</md-table-cell>
-                <md-table-cell md-label="subtitle" md-sort-by="subtitle">{{ item.subtitle }}</md-table-cell>
+                <md-table-cell md-label="Subtitle" md-sort-by="subtitle">{{ item.subtitle }}</md-table-cell>
                 <md-table-cell md-label="Category" md-sort-by="category.name">{{ item.category.name }}</md-table-cell>
-                <md-table-cell md-label="Author" md-sort-by="author">{{ item.author.email }}</md-table-cell>
+                <md-table-cell md-label="Author" md-sort-by="author.email">{{ item.author.email }}</md-table-cell>
                 <md-table-cell md-label="Actions">
                     <md-button @click="editArticle(item)" class="md-icon-button">
                         <md-icon>create</md-icon>
                     </md-button>
                     <md-button @click="deleteArticle(item)" class="md-icon-button">
                         <md-icon>delete</md-icon>
+                    </md-button>
+                    <md-button @click="displayArticle(item)" class="md-icon-button">
+                        <md-icon>visibility</md-icon>
                     </md-button>
                 </md-table-cell>
             </md-table-row>
@@ -58,6 +68,7 @@ export default {
     data: () => ({
         search: null,
         searched: [],
+        loading: true
     }),
     computed: {
         ...mapState({
@@ -66,8 +77,14 @@ export default {
     },
     methods: {
         ...mapActions('article', ['list', 'delete']),
+        goHome() {
+            router.push({name:'home'})
+        },
         newArticle () {
             router.push({name:'createArticle'})
+        },
+        newCategory() {
+            router.push({name:'createCategory'})
         },
         searchOnTable () {
             this.searched = searchByTitle(this.article.articles, this.search)
@@ -99,6 +116,7 @@ export default {
     created () {
         this.list().then(() => {
             this.searched = this.article.articles
+            this.loading = false
         })
     }
 }

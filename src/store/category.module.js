@@ -11,7 +11,21 @@ const actions = {
                 commit('listCategoriesSuccess', response.data)
                 consoleLogger.info(response)
             })
-    }
+    },
+    // eslint-disable-next-line no-unused-vars
+    create({dispatch, commit}, category) {
+        return new Promise((resolve, reject) => {
+            api.post('/category', category)
+                .then(response => {
+                    resolve(response)
+                    consoleLogger.info(response)
+                })
+                .catch(error => {
+                    reject(error)
+                })
+        })
+    },
+
 };
 
 const mutations = {
