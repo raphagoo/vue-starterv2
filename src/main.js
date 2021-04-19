@@ -6,9 +6,10 @@ import config from 'config'
 import { router } from './router'
 import { store } from './store'
 import api from './interfaces/apiInterface'
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css' // This line here
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+
+Vue.use(Vuetify)
 
 import VueSimpleAlert from "vue-simple-alert";
 
@@ -16,7 +17,6 @@ Vue.use(VueSimpleAlert);
 
 // prevents from display notice about running in dev mode
 Vue.config.productionTip = false
-Vue.use(VueMaterial)
 // make api and log available everywhere
 Vue.prototype.$api = api
 Vue.prototype.$log = logger
