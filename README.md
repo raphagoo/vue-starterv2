@@ -19,10 +19,10 @@ Here is a more complete [description](./description.md).
 
 ```bash
 # Clone this repo
-git clone https://github.com/psancho/vue-starter.git vue-starter
+git clone https://github.com/raphagoo/vue-starterv2.git vue-starterv2
 
 # change directory to your app
-cd vue-starter
+cd vue-starterv2
 
 # install the dependencies with npm
 npm i
