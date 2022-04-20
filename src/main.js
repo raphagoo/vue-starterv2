@@ -1,31 +1,26 @@
-import Vue from 'vue'
 import logger from 'logger'
-
-import App from './App.vue'
 import config from 'config'
 import { router } from './router'
 import { store } from './store'
 import api from './interfaces/apiInterface'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import { createApp } from 'vue'
+import App from './App.vue'
 
-Vue.use(Vuetify)
 
-import VueSimpleAlert from "vue-simple-alert";
 
-Vue.use(VueSimpleAlert);
+const vuetify = createVuetify()
 
-// prevents from display notice about running in dev mode
-Vue.config.productionTip = false
 // make api and log available everywhere
-Vue.prototype.$api = api
-Vue.prototype.$log = logger
+const VERSION = '2.1.0'
 
-logger.info('config:', config);
 logger.info('main.js VERSION', VERSION); // eslint-disable-line no-undef
 
-new Vue({
-    router,
-    store,
-    render: h => h(App)
-}).$mount('#app')
+const app = createApp(App)
+app.config.globalProperties.$config = config
+app.provide('$api', api)
+app.use(router)
+app.use(store)
+app.use(vuetify)
+app.mount('#app')

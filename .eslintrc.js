@@ -3,7 +3,9 @@ module.exports = {
     // "parser": "babel-eslint",
     "env": {
         // "browser": true,
-        "node": true
+        "node": true,
+        "browser": true,
+        "mocha": true
     },
     // "globals": {
     //     "module": true

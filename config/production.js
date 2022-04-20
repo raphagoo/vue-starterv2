@@ -1,6 +1,6 @@
 module.exports = {
     logLevel: 'warn',
-    baseHref: "/example/",
+    baseHref: "/",
     api: {
         baseUrl: "https://httpbin.org",
     },

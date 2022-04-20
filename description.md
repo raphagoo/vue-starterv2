@@ -16,7 +16,7 @@ Here is the commented list of dependencies.
 * [x] [`vue-router`](https://router.vuejs.org/) *the official one*
 * [x] [`vuex`](https://vuex.vuejs.org/) *state management pattern for Vue*
 * [x] [`vuex-persistedstate`](https://www.npmjs.com/package/vuex-persistedstate) *Persistance of vuex store on refresh*
-* [x] [`vue-material`](https://vuematerial.io/) *Material design for vue*
+* [x] [`vuetify`](https://vuetifyjs.com/) *Material design for vue*
 * [x] [`sweetalert2`](https://sweetalert2.github.io/) *Smooth and responsive alert system*
 
 ### dev
