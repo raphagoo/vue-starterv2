@@ -3,7 +3,7 @@ import Swal from 'sweetalert2'
 import { router } from '../router'
 import { default as $log } from '../interfaces/consoleLogger';
 const api = axios.create({
-    baseURL: import.meta.env.API_BASE_URL,
+    baseURL: import.meta.env.VITE_API_BASE_URL,
 });
 
 api.interceptors.request.use(

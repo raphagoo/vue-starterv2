@@ -1,4 +1,3 @@
-
 import logger from './interfaces/consoleLogger'
 import { router } from './router'
 import { store } from './store'

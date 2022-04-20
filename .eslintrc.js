@@ -1,21 +1,26 @@
 
-export default {
+module.exports = {
     root: true,
-    // "parser": "babel-eslint",
-    "env": {
-        // "browser": true,
-        "node": true,
+    env: {
+        node: true,
+        browser: true,
     },
-    // "globals": {
-    //     "module": true
-    // },
-    "rules": {
-        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:vue/essential",
-        // '@vue/standard',
+    extends: [
+        'eslint:recommended',
+        'plugin:vue/vue3-essential',
+        'plugin:vue/vue3-strongly-recommended',
+        '@vue/typescript/recommended',
+        '@vue/eslint-config-typescript',
     ],
+    parserOptions: {
+        ecmaVersion: 2020,
+    },
+    plugins: ['vue'],
+    // add your custom rules here
+    rules: {
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/ban-types': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        'vue/multi-word-component-names': 'off',
+    },
 }
