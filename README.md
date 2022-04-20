@@ -34,7 +34,7 @@ npm run dev
 
 Go to http://localhost:3000 in your browser.
 
-Note you can change the port (see [devServe.port](https://vitejs.dev/config/#preview-port) doc)
+Note you can change the port (see [devServe.port](https://vitejs.dev/config/#server-port) doc)
 
 ## Building the app
 
