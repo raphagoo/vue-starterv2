@@ -1,16 +1,26 @@
 <template>
-  <v-app class="test-class">
+    <v-app>
     <v-main>
-        <router-view/>
+        <Home/>
     </v-main>
-  </v-app>
+    </v-app>
 </template>
 
-<style lang="scss">
-// @import '~normalize.css';
-// @import '~reset-css/_reset.scss';
-* {
-    box-sizing: border-box;
-}
+<script lang="ts">
+import { defineComponent } from 'vue'
+import Home from './views/Home.vue'
 
-</style>
+export default defineComponent({
+    name: 'App',
+
+    components: {
+    Home,
+    },
+
+    data () {
+        return {
+          //
+        }
+    },
+})
+</script>

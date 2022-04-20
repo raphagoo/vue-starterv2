@@ -1,11 +1,10 @@
-module.exports = {
+
+export default {
     root: true,
     // "parser": "babel-eslint",
     "env": {
         // "browser": true,
         "node": true,
-        "browser": true,
-        "mocha": true
     },
     // "globals": {
     //     "module": true

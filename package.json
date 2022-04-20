@@ -1,90 +1,39 @@
 {
-    "name": "my-vue-starter",
-    "version": "2.1.0",
-    "description": "vueJs starter kit",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/raphagoo/vue-starter.git"
-    },
-    "keywords": [
-        "vue",
-        "webpack",
-        "eslint",
-        "babel"
-    ],
-    "author": "Pascal Sancho, Raphaël Agostini",
-    "license": "MIT",
-    "main": "index.js",
+    "name": "vue-starter-vite",
+    "version": "1.0.0",
+    "private": true,
     "scripts": {
-        "build": "rimraf dist && cross-env NODE_ENV=production webpack --progress",
-        "test": "jest --env=jsdom",
-        "start": "webpack-dev-server --profile",
-        "prod": "http-server ./dist -a localhost -p 5500 -o"
+        "build": "vite build",
+        "dev": "vite",
+        "preview": "vite preview",
+        "test": "jest ./src/tests"
     },
     "dependencies": {
-        "axios": "^0.21.1",
-        "deepmerge": "^4.2.2",
-        "moment": "^2.29.1",
-        "sweetalert2": "^10.16.4",
-        "vue": "^3.2.33",
+        "@mdi/font": "5.9.55",
+        "axios": "^0.26.1",
+        "roboto-fontface": "*",
+        "sweetalert2": "^11.4.8",
+        "vue": "^3.2.25",
         "vue-router": "^4.0.14",
-        "vuelidate": "^0.7.6",
-        "vuetify": "^3.0.0-beta.1",
+        "vuetify": "^3.0.0-beta.0",
         "vuex": "^4.0.2",
-        "vuex-persistedstate": "^4.0.0-beta.3"
+        "vuex-persistedstate": "^4.1.0"
     },
     "devDependencies": {
-        "@babel/core": "^7.13.15",
-        "@babel/plugin-transform-runtime": "^7.17.0",
-        "@babel/preset-env": "^7.8.12",
-        "@babel/runtime": "^7.13.10",
-        "@vue/compiler-sfc": "^3.2.33",
-        "@vue/test-utils": "^2.0.0-rc.20",
-        "@vue/vue3-jest": "^27.0.0-alpha.4",
-        "babel-jest": "^27.5.1",
-        "babel-loader": "^8.2.2",
-        "babel-plugin-import": "^1.13.5",
-        "chalk": "^4.1.0",
-        "clean-webpack-plugin": "^4.0.0",
-        "copy-webpack-plugin": "^8.1.1",
-        "cross-env": "^7.0.3",
-        "css-loader": "^5.2.7",
-        "eslint": "^7.24.0",
-        "eslint-loader": "^4.0.2",
-        "eslint-plugin-vue": "^7.8.0",
-        "eslint-webpack-plugin": "^2.6.0",
-        "file-loader": "^6.2.0",
-        "html-webpack-plugin": "^5.3.1",
-        "http-server": "^14.1.0",
-        "jest": "^27.5.1",
-        "jest-serializer-vue": "^2.0.2",
-        "mini-css-extract-plugin": "^2.6.0",
-        "mri": "^1.1.0",
-        "node-sass": "^7.0.1",
-        "process": "^0.11.10",
-        "sass-loader": "^12.6.0",
-        "style-loader": "^2.0.0",
-        "url-loader": "^4.1.1",
-        "vue-loader": "^17.0.0",
-        "vuetify-loader": "^2.0.0-alpha.9",
-        "webpack": "^5.72.0",
-        "webpack-cli": "^4.9.2",
-        "webpack-dev-server": "^4.8.1"
-    },
-    "jest": {
-        "moduleFileExtensions": [
-            "js",
-            "vue"
-        ],
-        "moduleNameMapper": {
-            "^@/(.*)$": "<rootDir>/src/$1"
-        },
-        "transform": {
-            "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-            ".*\\.(vue)$": "<rootDir>/node_modules/@vue/vue3-jest"
-        },
-        "snapshotSerializers": [
-            "<rootDir>/node_modules/jest-serializer-vue"
-        ]
+        "@types/jest": "^27.4.1",
+        "@types/webfontloader": "^1.0.0",
+        "@vitejs/plugin-vue": "^2.3.1",
+        "@vue/test-utils": "^2.0.0-rc.18",
+        "@vuetify/vite-plugin": "^1.0.0-alpha.0",
+        "jest": "^26.6.3",
+        "sass": "^1.38.0",
+        "sass-loader": "^10.0.0",
+        "ts-jest": "^26.5.6",
+        "typescript": "^4.5.4",
+        "vite": "^2.9.5",
+        "vue-cli-plugin-vuetify": "^2.4.8",
+        "vue-jest": "^5.0.0-alpha.10",
+        "vue-tsc": "^0.34.7",
+        "vuetify-loader": "^2.0.0-alpha.0"
     }
 }
