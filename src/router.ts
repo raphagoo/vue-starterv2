@@ -5,7 +5,6 @@ import Home from './views/Home.vue';
 
 export const router = createRouter({
     history: createWebHistory(),
-    base: '/',
     routes: [
         {
             path: '/',

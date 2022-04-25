@@ -16,7 +16,7 @@ const isDev = env === 'development'
 const publishConfig = mri(process.argv.slice(2))['publish-config'] || true
 const target = (publishConfig === true) ? env : publishConfig;
 
-const configPath = path.resolve(__dirname, `config/${target}.js`)
+const configPath = path.resolve(__dirname, `config/${target}.ts`)
 if (fs.existsSync(configPath)) {
     console.log(chalk.black.bgBlue('INFO') + ' Using ' + chalk.magenta(target) + ' configuration.')
 } else {
@@ -32,7 +32,7 @@ console.log(chalk.black.bgBlue('INFO') + ' version:', version)
 
 const config = {
     mode: env,
-    entry: path.join(__dirname, `src`, `main.js`),
+    entry: path.join(__dirname, `src`, `main.ts`),
     output: {
         filename: '[name].[fullhash].js',
         publicPath: baseHref,
