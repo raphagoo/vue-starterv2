@@ -2,7 +2,7 @@
 
 The structure of my usuals Vue projects
 
-[![Dependency Status](https://david-dm.org/raphagoo/vue-starterv2/status.svg)](https://david-dm.org/raphagoo/vue-starterv2#info=dependencies) [![devDependency Status](https://david-dm.org/raphagoo/vue-starterv2/dev-status.svg)](https://david-dm.org/raphagoo/vue-starterv2#info=devDependencies)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/raphagoo/vue-starterv2)
 
 Here is a more complete [description](./description.md).
 
