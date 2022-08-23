@@ -1,6 +1,7 @@
 # vue-starter
 
 The structure of my usuals Vue projects
+Webpack starter is on main, Vite on vite branch
 
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/raphagoo/vue-starterv2)
 
