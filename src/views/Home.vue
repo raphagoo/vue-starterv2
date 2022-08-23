@@ -1,6 +1,6 @@
 <template>
     <v-container class="home">
-        Hello word
+        Hello wordoooo
     </v-container>
 </template>
 
