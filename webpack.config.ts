@@ -1,6 +1,6 @@
 const path = require('path');
-const { HotModuleReplacementPlugin, IgnorePlugin, DefinePlugin } = require('webpack');
-const { VuetifyLoaderPlugin } = require('vuetify-loader');
+const { IgnorePlugin, DefinePlugin } = require('webpack');
+const { VuetifyPlugin } = require('webpack-plugin-vuetify');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -29,6 +29,13 @@ console.log(chalk.black.bgBlue('INFO') + ' baseHref:', baseHref)
 
 const version = require(path.resolve(__dirname, 'package.json')).version
 console.log(chalk.black.bgBlue('INFO') + ' version:', version)
+
+const optionsESLint = {
+    extensions: [`js`, `jsx`, `vue`],
+    exclude: [
+      `/node_modules/`,
+    ],
+}
 
 const config = {
     mode: env,
@@ -60,13 +67,12 @@ const config = {
             resourceRegExp: /^\.\/locale$/,
             contextRegExp: /moment$/,
         }),
-        new HotModuleReplacementPlugin(),
         new VueLoaderPlugin(),
         new DefinePlugin({
             __VUE_OPTIONS_API__: true,
             __VUE_PROD_DEVTOOLS__: false,
         }),
-        new VuetifyLoaderPlugin(),
+        new VuetifyPlugin(),
         new CopyPlugin({
             patterns: [
                 {
@@ -76,15 +82,10 @@ const config = {
                 }
             ]
         }),
-        new ESLintPlugin()
+        new ESLintPlugin(optionsESLint)
     ],
     module: {
         rules: [
-            {
-                test: /\.(js|vue)$/,
-                use: 'eslint-loader',
-                enforce: 'pre'
-            },
             //Babel uses runtime to avoid injecting unnecessary code
             {
                 test: /\.js$/,
