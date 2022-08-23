@@ -1,4 +1,4 @@
-import logger from 'logger'
+import consoleLogger from './interfaces/consoleLogger'
 import config from 'config'
 import { router } from './router'
 import { store } from './store'
@@ -15,7 +15,7 @@ const vuetify = createVuetify()
 // make api and log available everywhere
 const VERSION = '2.1.0'
 
-logger.info('main.js VERSION', VERSION); // eslint-disable-line no-undef
+consoleLogger.info('main.js VERSION', VERSION); // eslint-disable-line no-undef
 
 const app = createApp(App)
 app.config.globalProperties.$config = config
