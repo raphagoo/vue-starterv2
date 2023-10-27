@@ -22,7 +22,7 @@
         "prod": "http-server ./dist -a localhost -p 5500 -o"
     },
     "dependencies": {
-        "axios": "^0.27.2",
+        "axios": "^1.6.0",
         "deepmerge": "^4.3.1",
         "moment": "^2.29.4",
         "sweetalert2": "^11.7.3",
