@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import Home from './views/Home.vue';
+import Register from './views/Register.vue';
 
 
 export const router = createRouter({
@@ -11,6 +12,11 @@ export const router = createRouter({
             name: 'home',
             component: Home
         },
+        {
+          path: '/register',
+          name: 'register',
+          component: Register
+      },
         {
             path: '/:pathMatch(.*)*',
             redirect: '/',
